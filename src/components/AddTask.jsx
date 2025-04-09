@@ -45,7 +45,7 @@ const AddTask = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (formData.endDate && formData.endDate < formData.startDate) {
+        if (formData.endDate && formData.endDate < formData.startDate ) {
             window.alert('⚠️ End date cannot be before start date.');
             return;
         }
