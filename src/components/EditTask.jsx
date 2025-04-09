@@ -82,12 +82,12 @@ const EditTask = () => {
           value={status}
           onChange={(e) => setStatus(e.target.value)}
           className="p-2 border rounded"
+          
         >
           <option value="Pending">Pending</option>
           <option value="In Progress">In Progress</option>
           <option value="Completed">Completed</option>
-          <option value="Deployed">Deployed</option>
-          <option value="Deferred">Deferred</option>
+         
         </select>
 
         <button

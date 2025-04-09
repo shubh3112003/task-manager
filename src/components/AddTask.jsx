@@ -162,8 +162,7 @@ const AddTask = () => {
                                     <option value="Pending">Pending</option>
                                     <option value="In Progress">In Progress</option>
                                     <option value="Completed">Completed</option>
-                                    <option value="Deployed">Deployed</option>
-                                    <option value="Deferred">Deferred</option>
+                                   
                                 </select>
                             </div>
                             
