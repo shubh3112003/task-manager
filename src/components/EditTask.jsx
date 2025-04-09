@@ -78,7 +78,7 @@ const EditTask = () => {
           <option value="P1">P1</option>
           <option value="P2">P2</option>
         </select>
-        <select
+        {/* <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
           className="p-2 border rounded"
@@ -88,7 +88,7 @@ const EditTask = () => {
           <option value="Completed">Completed</option>
           <option value="Deployed">Deployed</option>
           <option value="Deferred">Deferred</option>
-        </select>
+        </select> */}
 
         <button
           onClick={handleUpdate}

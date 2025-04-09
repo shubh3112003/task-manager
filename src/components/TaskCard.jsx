@@ -57,7 +57,7 @@ const TaskCard = ({
 
     return (
         <div
-            className={` flex flex-col rounded-xl justify-center gap-4 bg-white w-72 max-h-[370px] shadow-xl border`}
+            className={` flex flex-col rounded-xl justify-center gap-4 bg-white w-[300px] max-h-[410px] shadow-xl border`}
         >
 
             <div
@@ -93,23 +93,25 @@ const TaskCard = ({
                 > {complete ? 'Completed' : `${status}`}</button>
 
             </div>
-            <div className="border rounded p-4 shadow-md bg-white flex flex-col gap-2 w-[300px]">
+            <div className="border rounded p-4 shadow-md bg-white flex flex-row gap-2 ">
       <h3 className="text-xl font-semibold">{title}</h3>
       {/* ...rest of the task fields here */}
 
-      <div className="flex gap-2 mt-2">
+      <div className="flex gap-2 flex-row mt-2">
+       <div>
         <button
           onClick={handleDelete}
-          className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+          className="bg-red-500  text-white px-3  rounded hover:bg-red-600"
         >
           Delete
-        </button>
-      </div>
+        </button></div>
+      
+      <Link to={`/edit/${id}`}>
+  <button className="bg-blue-500  text-white px-2  rounded hover:bg-blue-600">Edit</button>
+</Link></div>
     </div>
 
-<Link to={`/edit/${id}`}>
-  <button className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">Edit</button>
-</Link>
+
 
         </div>
     );

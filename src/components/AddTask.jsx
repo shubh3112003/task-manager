@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch } from "react-redux";
 import { addTask } from "../store/taskSlice";
+import { Link } from 'react-router-dom';
 
 const AddTask = () => {
     const dispatch = useDispatch();
@@ -44,6 +45,11 @@ const AddTask = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (formData.endDate && formData.endDate < formData.startDate) {
+            window.alert('⚠️ End date cannot be before start date.');
+            return;
+        }
+
         const serializableFormData = {
             ...formData,
             startDate: formData.startDate.toISOString(),
@@ -51,6 +57,7 @@ const AddTask = () => {
         };
         console.log(serializableFormData);
         dispatch(addTask(serializableFormData));
+        window.alert('✅ Task added successfully!');
         setFormData({
             title: '',
             description: '',
@@ -101,6 +108,22 @@ const AddTask = () => {
                             </div>
                         </div>
                         <div className="flex flex-wrap -mx-3 mb-2 sm:mb-6">
+                            <div className="w-full px-3 mb-6 md:mb-0">
+                                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="title">
+                                Task Assigned By
+                                </label>
+                                <input
+                                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="assignee"
+                                    type="text"
+                                    placeholder="Task assignee"
+                                    name="assignee"
+                                    value={formData.assignee}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        </div>
+                        <div className="flex flex-wrap -mx-3 mb-2 sm:mb-6">
                             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="startDate">
                                     Start Date
@@ -143,6 +166,7 @@ const AddTask = () => {
                                     <option value="Deferred">Deferred</option>
                                 </select>
                             </div>
+                            
                             <div className="w-full md:w-1/2 px-3">
                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="priority">
                                     Priority
@@ -160,7 +184,11 @@ const AddTask = () => {
                                 </select>
                             </div>
                         </div>
-                        <button type='submit' className='mt-8 w-full p-3 bg-indigo-500 rounded-lg text-center text-white hover:bg-indigo-300'>Add</button>
+                        <button type='submit' className='mt-3 w-full p-3 bg-indigo-500 rounded-lg text-center text-white hover:bg-indigo-300'>Add</button>
+                      <div className='mt-3 w-full  p-3 mb-20 bg-red-400 rounded-lg text-center text-white hover:bg-red-300 ' >
+                        <Link to="/" >
+      <button>Go to Dashboard</button>
+    </Link></div>
                     </form>
                 </div>
             </div>

@@ -58,7 +58,7 @@ const AllTasks = () => {
                         </div>
                     </div>
                     <div className="flex gap-2 flex-col sm:flex-row items-center">
-                        <p className="font-bold text-xl text-indigo-400">Sort </p>
+                        <p className="font-bold text-xl text-indigo-400"></p>
                         <div className="flex justify-center gap-[10px] sm:gap-3 flex-row items-center">
                             <select
                                 className="bg-gray-200 p-2 rounded-xl"

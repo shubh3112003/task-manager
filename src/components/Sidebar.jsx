@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
     return (
         <div className= " flex flex-row bg-blue-600 sm:min-h-10 h-20 w-full   top-0 roboto-regular">
-            <div className="flex items-center pl-4 justify-start h-16 text-white text-xl font-bold mt-2">
+            <div className="flex w-full items-center pl-4 justify-start  h-16 text-white text-xl font-bold mt-2">
                 <GrTask />
                 <span className='sm:block hidden '>
                 {'\u00A0'}Task{'\u00A0'}Manager
@@ -19,7 +19,6 @@ const Sidebar = () => {
                         <span className='sm:block hidden'>
 
                             Dashboard
-
                         </span>
                     </Link>
                     <Link to='/completeTask' className="px-6 py-4 font-semibold text-lg text-gray-300 hover:text-gray-700 cursor-pointer flex justify-start items-center gap-2">
@@ -46,22 +45,7 @@ const Sidebar = () => {
 
                         </span>
                     </Link>
-                    {/* <Link to='/deployedTask' className="px-6 py-4 font-semibold text-lg text-gray-300 hover:text-gray-700 cursor-pointer flex justify-start items-center gap-2">
-                        <MdCloudDone className="text-2xl" />
-                        <span className='sm:block hidden'>
-
-                            Deployed Tasks
-
-                        </span>
-                    </Link> */}
-                    {/* <Link to='/deferredTask' className="px-6 py-4 font-semibold text-lg text-gray-300 hover:text-gray-700 cursor-pointer flex justify-start items-center gap-2">
-                        < MdOutlineAccessTimeFilled className="text-2xl" />
-                        <span className='sm:block hidden'>
-
-                            Deferred Tasks
-
-                        </span>
-                    </Link> */}
+                    
 
                     <Link to='/addTask' className="px-6 py-4 font-semibold text-lg text-gray-300 hover:text-gray-700 cursor-pointer flex justify-start items-center gap-2">
                         <MdAddTask className="text-xl" />
