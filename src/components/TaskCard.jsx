@@ -32,10 +32,6 @@ const TaskCard = ({
                 return "bg-blue-200 text-blue-800";
             case "pending":
                 return "bg-yellow-200 text-yellow-800";
-            case "deferred":
-                return "bg-gray-200 text-gray-800";
-            case "deployed":
-                return "bg-purple-200 text-purple-800";
             default:
                 return "bg-white";
         }
