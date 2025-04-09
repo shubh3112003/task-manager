@@ -5,7 +5,8 @@ import { addTask } from '../store/taskSlice'
 
 const Home = () => {
     const [newTaskTitle, setNewTaskTitle] = useState('');
-    const [newTaskDescription, setNewTaskDescription] = useState(''); 
+    const [newTaskDescription, setNewTaskDescription] = useState(''); // Optional for description input
+
     const handleAddTask = () => {
         if (newTaskTitle.trim()) {
             store.dispatch(addTask({
@@ -13,7 +14,7 @@ const Home = () => {
                 description: newTaskDescription || '', // Optional description
             }));
             setNewTaskTitle('');
-            setNewTaskDescription(''); 
+            setNewTaskDescription(''); // Clear description input if used
         }
     };
 
