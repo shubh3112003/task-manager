@@ -7,7 +7,7 @@ const InProgressTask = () => {
     const completedTasks = tasks.filter(task => task.status === 'In Progress');
 
     return (
-        <div className="w-[70%] mx-auto">
+        <div className="w-[70%] pt-20 mx-auto">
             <div className="mt-10">
                 <h1 className="text-3xl font-bold my-8 text-center">In Progress Tasks</h1>
             </div>

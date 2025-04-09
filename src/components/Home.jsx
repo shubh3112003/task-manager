@@ -20,7 +20,7 @@ const Home = () => {
 
     return (
         <div>
-            <div className="App">
+            <div className="App pt-20">
                 <h1 className='text-3xl font-bold underline'>Task Manager</h1>
                 <input
                     type="text"

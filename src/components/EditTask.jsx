@@ -45,7 +45,7 @@ const EditTask = () => {
   }
 
   return (
-    <div className="w-[70%] mx-auto mt-10">
+    <div className="w-[70%] pt-20 mx-auto mt-10">
       <h2 className="text-3xl font-bold mb-6 text-center">Edit Task</h2>
       <div className="flex flex-col gap-4">
         <input

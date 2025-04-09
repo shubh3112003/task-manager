@@ -61,7 +61,7 @@ const Dashboard = () => {
     ];
 
     return (
-        <div className="mx-auto w-[80%]">
+        <div className="mx-auto pt-20 w-[80%]">
             {/* <Sidebar /> */}
             <div className="flex flex-col w-full justify-between" >
                 <h1 className="sm:text-2xl text-3xl font-bold my-8 text-center">Tasks</h1>

@@ -26,7 +26,7 @@ const AllTasks = () => {
     });
 
     return (
-        <div className="w-[70%] mx-auto">
+        <div className="w-[70%] pt-20 mx-auto">
             <div className="mt-10">
                 <h1 className="text-3xl ubuntu-bold my-8 text-center">Task Board</h1>
                 <div className="flex justify-between items-center">

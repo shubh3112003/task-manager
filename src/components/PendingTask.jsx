@@ -9,7 +9,7 @@ const PendingTask = () => {
     const tasks = useSelector(selectAllTasks);
     const completedTasks = tasks.filter(task => task.status === 'Pending');
     return (
-        <div className="w-[70%] mx-auto">
+        <div className="w-[70%] pt-20 mx-auto">
             <div className="mt-10">
                 <h1 className="text-3xl font-bold my-8 text-center">Pending Tasks</h1>
             </div>

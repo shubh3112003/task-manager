@@ -71,7 +71,7 @@ const AddTask = () => {
 
 
     return (
-        <div className="w-[70%] mx-auto">
+        <div className="w-[70%] pt-20 mx-auto">
             <div className=''>
                 <h1 className="text-3xl font-bold my-8 text-center">Add New Task</h1>
                 <div className='grid place-items-center'>
