@@ -7,10 +7,14 @@ const Sidebar = () => {
     return (
         <div className= " flex flex-row fixed bg-blue-600 sm:min-h-10 h-20 w-full   top-0 roboto-regular">
             <div className="flex w-full items-center pl-4 justify-start  h-16 text-white text-xl font-bold mt-2">
+              
+              
                 <GrTask />
+                <Link to='/'>
                 <span className='sm:block hidden '>
                 {'\u00A0'}Task{'\u00A0'}Manager
                 </span>
+                </Link>
             </div>
             <nav className="flex gap-10 justify-start">
                 <ul className="py-6 flex flex-row justify-start">
