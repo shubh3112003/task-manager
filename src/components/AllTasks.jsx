@@ -57,7 +57,7 @@ const AllTasks = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex gap-2 flex-col sm:flex-row items-center">
+                    <div className="flex gap-2  flex-col sm:flex-row items-center">
                         <p className="font-bold text-xl text-indigo-400"></p>
                         <div className="flex justify-center gap-[10px] sm:gap-3 flex-row items-center">
                             <select
@@ -87,7 +87,7 @@ const AllTasks = () => {
                 </div>
             </div>
             {filteredTasks.length > 0 ? (
-                <div className="flex flex-wrap gap-y-4 gap-x-14 justify-center  overflow-y-scroll mt-5 h-[80vh] sm:h-[80vh]">
+                <div className="flex flex-wrap gap-y-4 gap-x-14 pb-10 justify-center  overflow-y-scroll mt-5 h-[80vh] sm:h-[80vh]">
                     {filteredTasks.map((task) => (
                         <TaskCard
                             key={task.id}

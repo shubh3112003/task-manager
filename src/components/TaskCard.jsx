@@ -1,10 +1,9 @@
-
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { toggleTaskCompleted } from '../store/taskSlice'
+import { toggleTaskCompleted, removeTask } from '../store/taskSlice';
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { removeTask } from "../store/taskSlice";
+
 const TaskCard = ({
     id,
     title,
@@ -12,18 +11,20 @@ const TaskCard = ({
     startDate,
     endDate,
     status,
-  
     priority,
+    assignee,
 }) => {
     const [complete, setComplete] = useState(false);
     const dispatch = useDispatch();
+
     const getDate = (dateString) => {
         const dateObject = new Date(dateString);
-        const currentDate = dateObject.toLocaleDateString();
-        return currentDate;
+        return dateObject.toLocaleDateString();
     };
-    let startDatee = getDate(startDate);
-    let endDatee = getDate(endDate);
+
+    const startDatee = getDate(startDate);
+    const endDatee = getDate(endDate);
+
     const getStatusColor = (status) => {
         switch (status.toLowerCase()) {
             case "completed":
@@ -39,80 +40,79 @@ const TaskCard = ({
 
     const handleToggleCompleted = () => {
         dispatch(toggleTaskCompleted(id));
-        setComplete(true)
+        setComplete(true);
     };
 
     const handleDelete = () => {
         const confirmDelete = window.confirm("Are you sure you want to delete this task?");
         if (confirmDelete) {
-          dispatch(removeTask(id));
+            dispatch(removeTask(id));
         }
-      };
-
-
+    };
 
     return (
-        <div
-            className={` flex flex-col rounded-xl justify-center gap-4 bg-white w-[300px] max-h-[410px] shadow-xl border`}
-        >
-
-            <div
-                className={`relative bg-clip-border mt-6 ml-4 mr-4 rounded-lg ${getStatusColor(
-                    status
-                )} shadow-md h-45`}
-            >
-                <h1 className="anton-regular text-end pt-2 pr-3 text-sm">{`${priority}`}</h1>
-                <h1 className="font-bold text-center text-xl py-4 mb-5 ubuntu-bold">{`${title}`}</h1>
+        <div className="flex flex-col justify-between gap-4 w-[300px] max-h-[480px] rounded-xl bg-white shadow-xl border p-4">
+            {/* Header */}
+            <div className={`rounded-lg p-4 ${getStatusColor(status)} shadow-md`}>
+                <h1 className="text-sm text-end font-semibold">{priority}</h1>
+                <h1 className="text-xl text-center font-bold mt-2">{title}</h1>
             </div>
-            <div className="border-0 p-2 text-center">
-                <p className="poppins-light ">{`${description}`}</p>
-                <div className="flex justify-between mt-[5px] text-sm font-semibold py-2 px-4">
-                    <div className="flex justify-center flex-col">
-                        <p>Start Date</p>
-                        <p className="font-light">{`${startDatee}`}</p>
+
+            {/* Description */}
+            <div className="text-center px-2">
+                <p className="text-sm">{description}</p>
+
+                {/* Dates */}
+                <div className="flex justify-between mt-4 text-sm font-medium">
+                    <div className="flex flex-col items-start">
+                        <span className="font-semibold">Start Date</span>
+                        <span className="font-light">{startDatee}</span>
                     </div>
-                    <div className="flex justify-center flex-col">
-                        <p>End Date</p>
-                        <p className="font-light">{`${endDatee}`}</p>
+                    <div className="flex flex-col items-end">
+                        <span className="font-semibold">End Date</span>
+                        <span className="font-light">{endDatee}</span>
                     </div>
                 </div>
+
+                {/* Assignee and Task ID */}
+                <div className="flex flex-col items-start text-left mt-3 text-sm">
+                    <span><span className="font-semibold">Assignee:</span> {assignee || 'Unassigned'}</span>
+                    <span><span className="font-semibold">Task ID:</span> {id}</span>
+                </div>
             </div>
-            <div className="footer p-3 flex items-center justify-between">
-                <p className="font-light text-xs block text-black">{`John doe`}</p>
+
+            {/* Buttons */}
+            <div>
+            <div className="flex gap-2 mt-4">
                 <button
-                    onClick={handleToggleCompleted}
-                    type="button"
-                    className={`flex items-center justify-center gap-2 text-black  select-none focus:outline-none shadow-md  uppercase font-bold text-xs py-2 px-6 rounded-lg ${complete
-                        ? 'bg-green-200 text-green-800'
-                        : `${getStatusColor(status)}`
-                        }`}
-                > {complete ? 'Completed' : `${status}`}</button>
+                    onClick={handleDelete}
+                    className="w-1/2 bg-red-500 text-white text-sm px-3 py-2 rounded hover:bg-red-600"
+                >
+                    Delete
+                </button>
 
+                <Link to={`/edit/${id}`} className="w-1/2">
+                    <button className="w-full bg-blue-500 text-white text-sm px-3 py-2 rounded hover:bg-blue-600">
+                        Edit
+                    </button>
+                </Link>
             </div>
-            <div className="border rounded p-4 shadow-md bg-white flex flex-row gap-2 ">
-      <h3 className="text-xl font-semibold">{title}</h3>
-      {/* ...rest of the task fields here */}
 
-      <div className="flex gap-2 flex-row mt-2">
-       <div>
-        <button
-          onClick={handleDelete}
-          className="bg-red-500  text-white px-3  rounded hover:bg-red-600"
-        >
-          Delete
-        </button></div>
-      
-      <Link to={`/edit/${id}`}>
-  <button className="bg-blue-500  text-white px-2  rounded hover:bg-blue-600">Edit</button>
-</Link></div>
-    </div>
-
-
-
+            <button
+                onClick={handleToggleCompleted}
+                type="button"
+                className={`w-full mt-2 text-sm font-bold uppercase rounded py-2 px-3 shadow-md transition-all ${complete
+                    ? 'bg-green-200 text-green-800'
+                    : getStatusColor(status)
+                    }`}
+                disabled={status.toLowerCase() === 'completed'}
+            >
+                {status.toLowerCase() === 'completed' ? 'Completed' : 'Mark as Completed'}
+            </button>
+        </div>
         </div>
     );
 };
-
 
 TaskCard.propTypes = {
     id: PropTypes.string.isRequired,
