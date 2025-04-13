@@ -1,5 +1,4 @@
-// src/pages/EditTask.jsx
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllTasks, updateTask } from '../store/taskSlice';
@@ -17,6 +16,7 @@ const EditTask = () => {
   const [assignee, setAssignee] = useState('');
   const [priority, setPriority] = useState('');
   const [status, setStatus] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     if (task) {
@@ -37,7 +37,11 @@ const EditTask = () => {
       priority,
       status,
     }));
-    navigate('/'); // Or redirect to tasks list
+    setShowPopup(true);
+    setTimeout(() => {
+      setShowPopup(false);
+      navigate('/');
+    }, 2000);
   };
 
   if (!task) {
@@ -45,8 +49,15 @@ const EditTask = () => {
   }
 
   return (
-    <div className="w-[70%] pt-20 mx-auto mt-10">
+    <div className="w-[70%] pt-20 mx-auto mt-10 relative">
       <h2 className="text-3xl font-bold mb-6 text-center">Edit Task</h2>
+
+      {showPopup && (
+        <div className="absolute top-6 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-2 rounded shadow-lg transition-all duration-300 z-50">
+          Task updated successfully!
+        </div>
+      )}
+
       <div className="flex flex-col gap-4">
         <input
           type="text"
@@ -82,12 +93,10 @@ const EditTask = () => {
           value={status}
           onChange={(e) => setStatus(e.target.value)}
           className="p-2 border rounded"
-          
         >
           <option value="Pending">Pending</option>
           <option value="In Progress">In Progress</option>
           <option value="Completed">Completed</option>
-         
         </select>
 
         <button

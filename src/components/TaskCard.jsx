@@ -15,6 +15,7 @@ const TaskCard = ({
     assignee,
 }) => {
     const [complete, setComplete] = useState(false);
+    const [showDeletePopup, setShowDeletePopup] = useState(false);
     const dispatch = useDispatch();
 
     const getDate = (dateString) => {
@@ -47,11 +48,21 @@ const TaskCard = ({
         const confirmDelete = window.confirm("Are you sure you want to delete this task?");
         if (confirmDelete) {
             dispatch(removeTask(id));
+            setShowDeletePopup(true);
+            setTimeout(() => setShowDeletePopup(false), 2000);
         }
     };
 
     return (
-        <div className="flex flex-col justify-between gap-4 w-[300px] max-h-[480px] rounded-xl bg-white shadow-xl border p-4">
+        <div className="relative flex flex-col justify-between gap-4 w-[300px] max-h-[500px] rounded-xl bg-white shadow-xl border p-4">
+
+            {/* Popup */}
+            {showDeletePopup && (
+                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-10 text-sm">
+                    Task deleted successfully!
+                </div>
+            )}
+
             {/* Header */}
             <div className={`rounded-lg p-4 ${getStatusColor(status)} shadow-md`}>
                 <h1 className="text-sm text-end font-semibold">{priority}</h1>
@@ -83,33 +94,33 @@ const TaskCard = ({
 
             {/* Buttons */}
             <div>
-            <div className="flex gap-2 mt-4">
-                <button
-                    onClick={handleDelete}
-                    className="w-1/2 bg-red-500 text-white text-sm px-3 py-2 rounded hover:bg-red-600"
-                >
-                    Delete
-                </button>
-
-                <Link to={`/edit/${id}`} className="w-1/2">
-                    <button className="w-full bg-blue-500 text-white text-sm px-3 py-2 rounded hover:bg-blue-600">
-                        Edit
+                <div className="flex gap-2 mt-4">
+                    <button
+                        onClick={handleDelete}
+                        className="w-1/2 bg-red-500 text-white text-sm px-3 py-2 rounded hover:bg-red-600"
+                    >
+                        Delete
                     </button>
-                </Link>
-            </div>
 
-            <button
-                onClick={handleToggleCompleted}
-                type="button"
-                className={`w-full mt-2 text-sm font-bold uppercase rounded py-2 px-3 shadow-md transition-all ${complete
-                    ? 'bg-green-200 text-green-800'
-                    : getStatusColor(status)
-                    }`}
-                disabled={status.toLowerCase() === 'completed'}
-            >
-                {status.toLowerCase() === 'completed' ? 'Completed' : 'Mark as Completed'}
-            </button>
-        </div>
+                    <Link to={`/edit/${id}`} className="w-1/2">
+                        <button className="w-full bg-blue-500 text-white text-sm px-3 py-2 rounded hover:bg-blue-600">
+                            Edit
+                        </button>
+                    </Link>
+                </div>
+
+                <button
+                    onClick={handleToggleCompleted}
+                    type="button"
+                    className={`w-full mt-2 text-sm font-bold uppercase rounded py-2 px-3 shadow-md transition-all ${complete
+                        ? 'bg-green-200 text-green-800'
+                        : getStatusColor(status)
+                        }`}
+                    disabled={status.toLowerCase() === 'completed'}
+                >
+                    {status.toLowerCase() === 'completed' ? 'Completed' : 'Mark as Completed'}
+                </button>
+            </div>
         </div>
     );
 };
