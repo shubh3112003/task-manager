@@ -69,8 +69,7 @@ const AllTasks = () => {
                                 <option value="Pending">Pending</option>
                                 <option value="In Progress">In Progress</option>
                                 <option value="Completed">Completed</option>
-                                <option value="Deployed">Deployed</option>
-                                <option value="Deferred">Deferred</option>
+                                
                             </select>
                             <select
                                 className="bg-gray-200 p-2 rounded-xl"
